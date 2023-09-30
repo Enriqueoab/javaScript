@@ -10,6 +10,20 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="assets/styles/app.css" />
+    <!-- head section with the defer attribute because this ensures that it gets loaded early but executed
+    only once parsing HTML finished, so you have the best of both worlds.
+    refer guarantees the order of the scripts -->
+    <script src="assets/scripts/app.js" refer></script> 
+    <script src="assets/scripts/vendor.js" refer></script> 
+    
+        <!-- The difference to defer is that with async,
+       the script then executes right away once it was downloaded. 
+       So it does not wait for all the HTML code to be parsed. HTML will be paused.
+       async won't guaranted the order of the scripts
+       <script src="assets/scripts/app.js" async></script>
+       <script src="assets/scripts/vendor.js" refer></script> -->
+    
+
     <!-- <script>
       alert('Hello world!')
     </script> Having it here is only common if is a tiny script --> 
@@ -44,6 +58,5 @@
     But if you want to take control of the rendering process, you will have to implement
     your own modal (which would be common practice anyway since it looks much nicer,
     see section 7 of this course). -->
-    <script src="assets/scripts/app.js"></script>
   </body>
 </html>
