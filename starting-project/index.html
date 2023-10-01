@@ -5,17 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Basics</title>
-    <link
-      href="https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap"
-      rel="stylesheet"/>
-      <link
-      href="assets/styles/app.css" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap" rel="stylesheet"/>
+      <link href="assets/styles/app.css" rel="stylesheet"/>
 
     <!-- head section with the defer attribute because this ensures that it gets loaded early but executed
     only once parsing HTML finished, so you have the best of both worlds.
     refer guarantees the order of the scripts -->
-    <script src="assets/scripts/app.js" refer></script> 
-    <script src="assets/scripts/vendor.js" refer></script> 
+    <script src="assets/scripts/vendor.js" defer></script>
+    <script src="assets/scripts/app.js" defer></script> 
+     
 
         <!-- The difference to defer is that with async,
        the script then executes right away once it was downloaded. 

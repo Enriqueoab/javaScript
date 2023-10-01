@@ -1,9 +1,73 @@
 const defaultValue = 0;
 let result = defaultValue;
 
-result = (result + 10) * 3;
+function getUserNumberInput() {
+    return parseInt(userInput.value);
+  }
 
-//That is a template literal, a way to, dynamically, inject a value (using back ticks (alt + 96))
-let calculationDesc = `(${result} + 10) * 3`;
+function buildCalculationExpresion(oldResult, operator, value){
+    return `Operation: ${oldResult} ${operator} ${value}`
+}
 
-outputResult(result, calculationDesc); 
+function sum() {
+    let operator = "+";
+    let usrInput = getUserNumberInput();
+    let expresion = buildCalculationExpresion(result, operator, usrInput);
+    result += usrInput;
+    return outputResult(result, expresion) ;
+
+}
+
+function subtract() {
+    let operator = "-";
+    let usrInput = getUserNumberInput();
+    let expresion = buildCalculationExpresion(result, operator, usrInput);
+    result -= usrInput;
+    return outputResult(result, expresion) ;
+
+} 
+
+addBtn.addEventListener("click", sum);
+subtractBtn.addEventListener("click", subtract);
+
+
+
+//TODO: make other two operations not copy paste just try
+
+// add button lister
+// call function to get the user imput getUserNumberInput
+// call buildCalculationExpresion
+// call outputResult
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
