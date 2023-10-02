@@ -5,8 +5,8 @@ function getUserNumberInput() {
     return parseInt(userInput.value);
   }
 
-function buildCalculationExpresion(oldResult, operator, value){
-    return `Operation: ${oldResult} ${operator} ${value}`
+function buildCalculationExpresion(oldResult, operator, userInputValue){
+    return `Operation: ${oldResult} ${operator} ${userInputValue}`
 }
 
 function sum() {
@@ -27,20 +27,24 @@ function subtract() {
 
 } 
 
+function multiply(){
+    let userIn = getUserNumberInput();
+    let expresion = buildCalculationExpresion(result, "*", userIn);
+    result *= userIn;
+    return outputResult(result, expresion);
+}
+
+function divide(){
+    let userIn = getUserNumberInput();
+    let expresion = buildCalculationExpresion(result, "/", userIn);
+    result /= userIn;
+    return outputResult(result, expresion);
+}
+
 addBtn.addEventListener("click", sum);
 subtractBtn.addEventListener("click", subtract);
-
-
-
-//TODO: make other two operations not copy paste just try
-
-// add button lister
-// call function to get the user imput getUserNumberInput
-// call buildCalculationExpresion
-// call outputResult
-
-
-
+multiplyBtn.addEventListener("click", multiply);
+divideBtn.addEventListener("click", divide);
 
 
 
