@@ -1,50 +1,63 @@
-const defaultValue = 0;
-let result = defaultValue;
+const OPERATORS = ["+", "-", "*", "/"];
+const DEFAULT_VALUE = 0;
+let result = DEFAULT_VALUE;
 
 function getUserNumberInput() {
     return parseInt(userInput.value);
   }
 
-function buildCalculationExpresion(oldResult, operator, userInputValue){
-    return `Operation: ${oldResult} ${operator} ${userInputValue}`
+function buildCalculationExpression(operator, userInputValue) {
+    return `Operation: ${result} ${operator} ${userInputValue}`
 }
 
-function sum() {
-    let operator = "+";
+function operationController(operator) {
+    
     let usrInput = getUserNumberInput();
-    let expresion = buildCalculationExpresion(result, operator, usrInput);
-    result += usrInput;
-    return outputResult(result, expresion) ;
+    if (usrInput != 0) {
+    
+    let expression = buildCalculationExpression(operator, usrInput);
+        
+        if(operator === OPERATORS[0]) {
+            outputResult(sum(usrInput), expression);
 
+        } else if(operator === OPERATORS[1]) {
+            outputResult(subtract(usrInput), expression);
+        
+        } else if(operator === OPERATORS[2]) {
+            outputResult(multiply(usrInput), expression);    
+        
+        } else if(operator === OPERATORS[3]) {
+            outputResult(divide(usrInput), expression);
+        
+        } else {
+            alert("Something went wrong!");
+        }
+    } else {
+        alert("Not logic operation");
+    }
 }
 
-function subtract() {
-    let operator = "-";
-    let usrInput = getUserNumberInput();
-    let expresion = buildCalculationExpresion(result, operator, usrInput);
-    result -= usrInput;
-    return outputResult(result, expresion) ;
+function sum(usrInput) {
+    return result += usrInput;
+}
+
+function subtract(usrInput) {    
+    return result -= usrInput;
 
 } 
 
-function multiply(){
-    let userIn = getUserNumberInput();
-    let expresion = buildCalculationExpresion(result, "*", userIn);
-    result *= userIn;
-    return outputResult(result, expresion);
+function multiply(usrInput){
+    return result *= usrInput;
 }
 
-function divide(){
-    let userIn = getUserNumberInput();
-    let expresion = buildCalculationExpresion(result, "/", userIn);
-    result /= userIn;
-    return outputResult(result, expresion);
+function divide(usrInput){
+    return result /= usrInput;
 }
 
-addBtn.addEventListener("click", sum);
-subtractBtn.addEventListener("click", subtract);
-multiplyBtn.addEventListener("click", multiply);
-divideBtn.addEventListener("click", divide);
+addBtn.addEventListener("click", operationController.bind(null, OPERATORS[0]));
+subtractBtn.addEventListener("click", operationController.bind(null, OPERATORS[1]));
+multiplyBtn.addEventListener("click", operationController.bind(null, OPERATORS[2]));
+divideBtn.addEventListener("click", operationController.bind(null, OPERATORS[3]));
 
 
 
