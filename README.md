@@ -33,7 +33,7 @@ const userName = enteredValue || 'PLACEHOLDER'; // will assign 'PLACEHOLDER' if 
 ## Labeled statement
 
 Labeled statement that's really something we will rarely see and use in Javascript.
-You can assign a name to a loop, we can assign it to any expression but it really only makes sense on loops because it is ment to be use with break and continue, as the example below;
+You can assign a name to a loop, we can assign it to any expression but it really only makes sense on loops because it is meant to be use with break and continue, as the example below:
 
 ```js
   let j = 0;
@@ -47,5 +47,51 @@ You can assign a name to a loop, we can assign it to any expression but it reall
       console.log('Inner', k);
     }
     j++;
+  }
+```
+
+## Difference between for-of and for-in
+
+- The primary difference is that for-of loops were built to give you an easy way to loop through array elements, for-in loops exist to make going through object properties easy. We can see how they works at the end of the next snippet:
+
+```js
+  let battleLog = [];
+
+  function writeToLog(ev, val, monsterHealth, playerHealth) {
+  let logEntry = {
+    event: ev,
+    value: val,
+    finalMonsterHealth: monsterHealth,
+    finalPlayerHealth: playerHealth
+  };
+  switch (ev) {
+    case LOG_EVENT_PLAYER_ATTACK:
+      logEntry.target = 'MONSTER';
+      break;
+    case LOG_EVENT_PLAYER_STRONG_ATTACK:
+      logEntry = {
+        event: ev,
+        value: val,
+        target: 'MONSTER',
+        finalMonsterHealth: monsterHealth,
+        finalPlayerHealth: playerHealth
+      };
+      break;
+    default:
+      logEntry = {};
+  }
+  battleLog.push(logEntry);
+}
+
+  for (const logEntry of battleLog) {
+    if ((!lastLoggedEntry && lastLoggedEntry !== 0) || lastLoggedEntry < i) {
+      console.log(`#${i}`);
+      for (const key in logEntry) {
+        console.log(`${key} => ${logEntry[key]}`);
+      }
+      lastLoggedEntry = i;
+      break;
+    }
+    i++;
   }
 ```
