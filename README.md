@@ -29,3 +29,23 @@ const enteredValue = ''; // let's assume this is set based on some input provide
  
 const userName = enteredValue || 'PLACEHOLDER'; // will assign 'PLACEHOLDER' if enteredValue is an empty string
 ```
+
+## Labeled statement
+
+Labeled statement that's really something we will rarely see and use in Javascript.
+You can assign a name to a loop, we can assign it to any expression but it really only makes sense on loops because it is ment to be use with break and continue, as the example below;
+
+```js
+  let j = 0;
+  outerWhile: do {
+    console.log('Outer', j);
+    innerFor: for (let k = 0; k < 5; k++) {
+      if (k === 3) {
+        break outerWhile;
+        // continue outerWhile; // dangerous! => Infinite loop!
+      }
+      console.log('Inner', k);
+    }
+    j++;
+  }
+```
