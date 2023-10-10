@@ -95,3 +95,11 @@ You can assign a name to a loop, we can assign it to any expression but it reall
     i++;
   }
 ```
+
+**We can set a strict mode in our script to avoid certains behaviours, how to do it here -> https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Strict_mode#changes_in_strict_mode**
+
+
+## Difference between var, let and const
+
+- the main difference betweem them is that the scope of variables you create in the functions differs. ```var``` has global/function(local scope) while ```let``` and ```const``` have block scope.
+Block scope means that variables are created in a block (```{}```) and then belong to that block. Hence if statements and for-loops can also have their own, scope variables for example.
