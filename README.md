@@ -103,7 +103,11 @@ Block scope means that variables are created in a block (```{}```) and then belo
 
 
     xfun::embed_file('/Summary slides\ES5 -ES6+ javaScript standars\var-vs-let-vs-const.pdf') 
-
+<object data="https://github.com/Enriqueoab/javaScript/blob/development/Summary%20slides/ES5%20-ES6%2B%20javaScript%20standars/var-vs-let-vs-const.pdf" type="application/pdf" width="700px" height="700px">
+    <embed src="https://github.com/Enriqueoab/javaScript/blob/development/Summary%20slides/ES5%20-ES6%2B%20javaScript%20standars/var-vs-let-vs-const.pdf">
+        <p>This browser does not support PDFs. Please download the PDF to view it: <a href="https://github.com/Enriqueoab/javaScript/blob/development/Summary%20slides/ES5%20-ES6%2B%20javaScript%20standars/var-vs-let-vs-const.pdf">Download PDF</a>.</p>
+    </embed>
+</object>
 
 **We can set a strict mode in our script to avoid certains behaviours, how to do it here:** https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Strict_mode#changes_in_strict_mode
 
