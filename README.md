@@ -101,11 +101,9 @@ You can assign a name to a loop, we can assign it to any expression but it reall
 - the main difference betweem them is that the scope of variables you create in the functions differs. ```var``` has global/function(local scope) while ```let``` and ```const``` have block scope.
 Block scope means that variables are created in a block (```{}```) and then belong to that block. Hence if statements and for-loops can also have their own, scope variables for example.
 
-
-    xfun::embed_file('/Summary slides\ES5 -ES6+ javaScript standars\var-vs-let-vs-const.pdf') 
 <object>
     <embed>
-        <p>Summary slide: <a href="https://github.com/Enriqueoab/javaScript/blob/development/Summary%20slides/ES5%20-ES6%2B%20javaScript%20standars/var-vs-let-vs-const.pdf">Summary PDF slide:</a>
+        <p>Summary slide: <a href="https://github.com/Enriqueoab/javaScript/blob/development/Summary%20slides/ES5%20-ES6%2B%20javaScript%20standars/var-vs-let-vs-const.pdf">var vs let vs const</a>
         </p>
     </embed>
 </object>
@@ -128,4 +126,12 @@ Understands core syntax (```let```, ```const```, etc) but does NOT know anything
 
 Not responsible for understanding your code (that's what "The JavaScript Language" does) but instead responsible for exposing APIs like the DOM API which you can use from inside your script code.
 
+<object>
+    <embed>
+        <p>Summary slide: <a href="/Summary%20slides/ES5%20-ES6%2B%20javaScript%20standars/js-engines-in-detail.pdf">var vs let vs const</a>
+        </p>
+    </embed>
+</object>
+
 ## Primitive vs reference values
+
