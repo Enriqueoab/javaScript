@@ -96,10 +96,32 @@ You can assign a name to a loop, we can assign it to any expression but it reall
   }
 ```
 
-**We can set a strict mode in our script to avoid certains behaviours, how to do it here -> https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Strict_mode#changes_in_strict_mode**
-
-
 ## Difference between var, let and const
 
 - the main difference betweem them is that the scope of variables you create in the functions differs. ```var``` has global/function(local scope) while ```let``` and ```const``` have block scope.
 Block scope means that variables are created in a block (```{}```) and then belong to that block. Hence if statements and for-loops can also have their own, scope variables for example.
+
+```{r echo=FALSE}
+    xfun::embed_file('/Summary slides\ES5 -ES6+ javaScript standars\var-vs-let-vs-const.pdf') 
+
+```
+
+**We can set a strict mode in our script to avoid certains behaviours, how to do it here:** https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Strict_mode#changes_in_strict_mode
+
+
+
+## JavaScript Language vs Browser APIs
+
+We covered the JavaScript engine and what it does inside of the browser. You also learned that there is a difference between the JS code execution and Browser APIs you might tap into during that execution.
+
+Essentially, you can split the code you write into these two pieces:
+
+1) The JavaScript Language:
+
+Understands core syntax (```let```, ```const```, etc) but does NOT know anything about the DOM (The Document Object Model (DOM) is a programming API for HTML and XML documents. It defines the logical structure of documents and the way a document is accessed and manipulated.), for example
+
+2) Browser APIs:
+
+Not responsible for understanding your code (that's what "The JavaScript Language" does) but instead responsible for exposing APIs like the DOM API which you can use from inside your script code.
+
+## Primitive vs reference values
