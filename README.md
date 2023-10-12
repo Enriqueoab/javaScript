@@ -103,7 +103,7 @@ Block scope means that variables are created in a block (```{}```) and then belo
 
 <object>
     <embed>
-        <p>Summary slide: <a href="https://github.com/Enriqueoab/javaScript/blob/development/Summary%20slides/ES5%20-ES6%2B%20javaScript%20standars/var-vs-let-vs-const.pdf">var vs let vs const</a>
+        <p>Summary slide: <a href="/Summary%20slides/ES5%20-ES6%2B%20javaScript%20standars/var-vs-let-vs-const.pdf">var vs let vs const</a>
         </p>
     </embed>
 </object>
@@ -128,10 +128,65 @@ Not responsible for understanding your code (that's what "The JavaScript Languag
 
 <object>
     <embed>
-        <p>Summary slide: <a href="/Summary%20slides/ES5%20-ES6%2B%20javaScript%20standars/js-engines-in-detail.pdf">var vs let vs const</a>
+        <p>Summary slide: <a href="/Summary%20slides/ES5%20-ES6%2B%20javaScript%20standars/js-engines-in-detail.pdf">JavaScript engine</a>
         </p>
     </embed>
 </object>
 
 ## Primitive vs reference values
+
+- Primitive values - Javascript can get rid of them relatively easy, they're cheap to be recreated so it can easily duplicate them, this doesn't cost too much, not much memory is consumed by these values in the end and therefore, they're typically stored in its stack memory.
+
+- Reference values - They are all the other objects or generally, all objects in Javascript. Now technically if you want to be really correct, string numbers and so on are not objects but are dynamically transformed to pseudo objects you could say when you do something like:
+
+```js
+let name = "Enrique";
+
+name.length(); // return 7
+```
+
+It kind of implies that we're accessing a property of name which then in turn implies that name would be an object but it actually isn't.
+What happens here is Javascript dynamically transforms a string or a number, so any primitive value to an object temporarily if you use the dot notation on it but other than that, it's a primitive value and it's always behaving as you see it in the slide below.
+
+<object>
+    <embed>
+        <p>Summary slide: <a href="/Summary%20slides/ES5%20-ES6%2B%20javaScript%20standars/primitive-vs-reference-values.pdf">Primitive vs reference values</a>
+        </p>
+    </embed>
+</object>
+
+Now all real objects which always stay objects are handled differently because they're more expensive to create, well these objects hold more data than just a couple of characters they're more complex to manage and therefore creating them takes longer, occupies more memory, etc and that's why the browser typically stores these in the heap.
+So a **variable then only stores a pointer, so the address of that place in memory and not the value itself**. As the example, run in the developers tool console, shows below:
+
+```js
+let hobbies = ["Sports"];
+let newHobbies = hobbies;
+
+hobbies // return ["Sports"]
+newHobbies // return ["Sports"]
+
+hobbies.push("Riding");
+newHobbies // return ["Sports", "Riding"]
+
+```
+
+That's because there is nothing like one and the other array, **there only is exactly one array in memory and then both variables hold the same pointer at that place in memory**. It's the same for objects.
+For primitive values, a variable really stored the value itself in it, for reference values that's not the case.
+
+In order to avoid tat behaviour we could create a new object using the spread operator, what this operator does is it pulls out all the key-value pairs in hobbies and adds them as new key value pairs to this, newestHobbies, new object. See example:
+
+```js
+let newestHobbies = [ ...hobbies ];
+```
+
+Now let's see a case where we have 2 different objects, therefore, 2 differents memory points, as shown below:
+
+```js
+const person = {age: 30};
+const person2 = {age: 30};
+
+person === person2 // return false
+```
+
+The key difference between primitive and reference values is that when you copy a variable,  which means you assign it to a new one which holds a primitive value, then the value is actually copied.
 
