@@ -190,3 +190,13 @@ person === person2 // return false
 
 The key difference between primitive and reference values is that when you copy a variable,  which means you assign it to a new one which holds a primitive value, then the value is actually copied.
 
+## Garbage collector
+
+- what this garbage collector does, it periodically checks the heap memory for unused objects and unused objects are objects without references. References are the addresses, is in the end,which are stored in variables and therefore the garbage collector will go ahead and basically remove, clear all unused objects from the memory, from the heap memory, all the objects where it sees that you certainly won't work with them anymore in your code.
+
+<object>
+    <embed>
+        <p>Summary slide: <a href="/Summary%20slides/ES5%20-ES6%2B%20javaScript%20standars/garbage-collection.pdf">Primitive vs reference values</a>
+        </p>
+    </embed>
+</object>
