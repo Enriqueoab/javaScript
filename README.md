@@ -196,7 +196,7 @@ The key difference between primitive and reference values is that when you copy 
 
 <object>
     <embed>
-        <p>Summary slide: <a href="/Summary%20slides/ES5%20-ES6%2B%20javaScript%20standars/garbage-collection.pdf">Primitive vs reference values</a>
+        <p>Summary slide: <a href="/Summary%20slides/ES5%20-ES6%2B%20javaScript%20standars/garbage-collection.pdf">Garbage collector</a>
         </p>
     </embed>
 </object>
