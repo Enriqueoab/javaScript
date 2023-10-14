@@ -288,3 +288,36 @@ function foo() { return 5; }
 alert(foo()); // ERROR! foo wasn't loaded yet
 var foo = function() { return 5; }
 ```
+
+## Default function argument 
+
+- We can set in our function a default value in case we send a "undefined" value, **this aproach onli works with undefined**.
+
+```js
+const getGameResult = (computerChoice, playerChoice = DEFAULT_CHOICE ) => { // playerChoice = DEFAULT_CHOICE to set a default value
+    const gameResult = [ "Draw", "Player", "Computer" ];
+
+    if (computerChoice === ROCK && playerChoice === PAPER ||
+        computerChoice === PAPER && playerChoice === SCISSORS ||
+        computerChoice === SCISSORS && playerChoice === ROCK ) {
+        return gameResult[1];
+
+    } else if (computerChoice === playerChoice){
+        return gameResult[0];
+    } else{
+        return gameResult[2];
+    }
+}
+```
+
+- The way we could call this function are: 
+
+```js
+ const result = getGameResult(computerChoice, playerChoice);
+```
+
+Or, to force the default value:
+
+```js
+ const result = getGameResult(computerChoice);
+```
