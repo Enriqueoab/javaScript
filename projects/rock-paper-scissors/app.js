@@ -25,8 +25,12 @@ function getUserChoice() {
 
 }
 
+let computerChoice = () => PAPER;
+
 startGameBtn.addEventListener("click", function startGame() { // The name is set for error purposes. The error would show "anonymous" otherwise
     getUserChoice();
-    console.log("Game is starting...")
-    console.log(`User chose ${userChoice}`)
+    console.log("Game is starting...");
+    console.log(`User choise ${userChoice}`);
+    console.log(`Computer choise ${computerChoice}`);
+    
 });
