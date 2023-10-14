@@ -110,8 +110,6 @@ Block scope means that variables are created in a block (```{}```) and then belo
 
 **We can set a strict mode in our script to avoid certains behaviours, how to do it here:** https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Strict_mode#changes_in_strict_mode
 
-
-
 ## JavaScript Language vs Browser APIs
 
 We covered the JavaScript engine and what it does inside of the browser. You also learned that there is a difference between the JS code execution and Browser APIs you might tap into during that execution.
@@ -201,6 +199,8 @@ The key difference between primitive and reference values is that when you copy 
     </embed>
 </object>
 
+# Functions:
+
 ## Different Arrow Function Syntaxes
 
 - For arrow functions, you got a couple of different syntaxes which you can use - here's a summary. 
@@ -288,10 +288,16 @@ function foo() { return 5; }
 alert(foo()); // ERROR! foo wasn't loaded yet
 var foo = function() { return 5; }
 ```
+<object>
+    <embed>
+        <p>Summary slide: <a href="/Summary%20slides/ES5%20-ES6%2B%20javaScript%20standars/arrow-functions.pdf">Arrow functions</a>
+        </p>
+    </embed>
+</object>
 
 ## Default function argument 
 
-- We can set in our function a default value in case we send a "undefined" value, **this aproach onli works with undefined**.
+- We can set in our function a default value in case we send a "undefined" value, **this aproach only works with undefined**.
 
 ```js
 const getGameResult = (computerChoice, playerChoice = DEFAULT_CHOICE ) => { // playerChoice = DEFAULT_CHOICE to set a default value
@@ -321,3 +327,52 @@ Or, to force the default value:
 ```js
  const result = getGameResult(computerChoice);
 ```
+
+## Rest Parameter
+
+- It is used when we need an unknown amount of values in a function. It bundles all arguments beyond the first argument, in our example below, into an array, accessible via tha ```values``` parameter:
+
+```js
+function add(startingValue, ...values) {
+    let sum = startingValue;
+    // ... other code ...
+}
+```
+
+## JavaScript Function bind()
+
+- What is bind () in JS?
+    Bind is a method on the prototype of all functions in JavaScript. It allows you to create a new function from an existing function,
+    change the new function's ```this``` context, and provide any arguments you want the new function to be called with.
+
+    With the bind() method, an object can borrow a method from another object. The example below creates 2 objects (person and member). 
+    The member object borrows the fullname method from the person object:
+
+- *Example*
+
+```js
+const person = {
+  firstName:"John",
+  lastName: "Doe",
+  fullName: function () {
+    return this.firstName + " " + this.lastName;
+  }
+}
+
+const member = {
+  firstName:"Hege",
+  lastName: "Nilsen",
+}
+
+let fullName = person.fullName.bind(member);
+```
+
+**When might bind() come in handy?**
+
+- In situations where you want to "pre-configure" a function's arguments, when you are not calling the function on your own.
+  In other words when we need to pass values to a function that we don't want to execute straight away, as shown below, 
+  used in a button listener where we can NOT set the function as ```operationController(OPERATORS[0])``` because would be trigger when the script is charged:
+
+  ```js
+  addBtn.addEventListener("click", operationController.bind(null, OPERATORS[0]));
+  ```
