@@ -108,7 +108,7 @@ Block scope means that variables are created in a block (```{}```) and then belo
     </embed>
 </object>
 
-**We can set a strict mode in our script to avoid certains behaviours, how to do it here:** https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Strict_mode#changes_in_strict_mode
+> **We can set a strict mode in our script to avoid certains behaviours, how to do it here:** https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Strict_mode#changes_in_strict_mode
 
 ## JavaScript Language vs Browser APIs
 
@@ -186,7 +186,7 @@ const person2 = {age: 30};
 person === person2 // return false
 ```
 
-The key difference between primitive and reference values is that when you copy a variable,  which means you assign it to a new one which holds a primitive value, then the value is actually copied.
+> The key difference between primitive and reference values is that when you copy a variable,  which means you assign it to a new one which holds a primitive value, then the value is actually copied.
 
 ## Garbage collector
 
@@ -215,7 +215,7 @@ const add = (a, b) => {
 };
 ```
 
-*Noteworthy: Semi-colon at end, no function keyword, parentheses around parameters/arguments*
+> *Noteworthy: Semi-colon at end, no function keyword, parentheses around parameters/arguments*
 
 2) Shorter parameter syntax, if exactly one parameter is received:
 
@@ -225,7 +225,7 @@ const log = message => {
 };
 ```
 
-*Noteworthy: Parentheses around parameter list can be omitted (for exactly one argument)*
+> *Noteworthy: Parentheses around parameter list can be omitted (for exactly one argument)*
 
 3) Empty parameter parentheses if NO arguments are received:
 
@@ -235,7 +235,7 @@ const greet = () => {
 };
 ```
 
-*Noteworthy: Parentheses have to be added (can't be omitted)*
+> *Noteworthy: Parentheses have to be added (can't be omitted)*
 
 4) Shorter function body, if exactly one expression is used:
 
@@ -243,7 +243,7 @@ const greet = () => {
 const add = (a, b) => a + b;
 ```
 
-*Noteworthy: Curly braces and return statement can be omitted, expression result is always returned automatically*
+> *Noteworthy: Curly braces and return statement can be omitted, expression result is always returned automatically*
 
 5) Function returns an object (with shortened syntax as shown in 4)):
 
@@ -251,8 +251,8 @@ const add = (a, b) => a + b;
 const loadPerson = pName => ({name: pName });
 ```
 
-*Noteworthy: Extra parentheses are required around the object, since the curly braces would otherwise be interpreted as the function body delimiters (and hence a syntax error would be thrown here)
-That last case can be confusing: Normally, in JavaScript, curly braces always can have exactly one meaning*
+> *Noteworthy: Extra parentheses are required around the object, since the curly braces would otherwise be interpreted as the function body delimiters (and hence a syntax error would be thrown here)
+> That last case can be confusing: Normally, in JavaScript, curly braces always can have exactly one meaning*
 
 ```js
 const person = { name: 'Max' }; // Clearly creates an object
@@ -266,23 +266,32 @@ if (something) { ... } // Clearly used to mark the if statement block
 2) Create an object which you want to return (in shorter function body form) To "tell" JavaScript what you want to do,
 wrap the expression (e.g. object creation) in parentheses like shown above.
 
-## Quiz:
+<object>
+    <embed>
+        <p>Summary slide: <a href="/Summary%20slides/functions/arrow-functions.pdf">Arrow functions</a>
+        </p>
+    </embed>
+</object>
+
+***Quiz:***
+
+## function declaration and function expression:
 
 1) What's the difference between a function declaration and function expression?
 
 - Function declarations automatically create variables that hold the function objects, function expressions don't do that - they return an object instead,
  it's your job to then do something with it (e.g. store it in a variable).
 
-**Examples:**
+***Examples:***
 
-*Function Declaration - load before any code is executed*
+> *Function Declaration - load before any code is executed*
 
 ```js
 alert(foo()); // Return 5. Declarations are loaded before any code can run.
 function foo() { return 5; }
 ```
 
-*Function Expression - load only when the interpreter reaches that line of code*
+> *Function Expression - load only when the interpreter reaches that line of code*
 
 ```js
 alert(foo()); // ERROR! foo wasn't loaded yet
@@ -290,7 +299,7 @@ var foo = function() { return 5; }
 ```
 <object>
     <embed>
-        <p>Summary slide: <a href="/Summary%20slides/ES5%20-ES6%2B%20javaScript%20standars/arrow-functions.pdf">Arrow functions</a>
+        <p>Summary slide: <a href="/Summary%20slides/functions/function-declaration-vs-expression.pdf">Arrow functions</a>
         </p>
     </embed>
 </object>
@@ -348,7 +357,7 @@ function add(startingValue, ...values) {
     With the bind() method, an object can borrow a method from another object. The example below creates 2 objects (person and member). 
     The member object borrows the fullname method from the person object:
 
-- *Example*
+***Example:***
 
 ```js
 const person = {
@@ -373,6 +382,145 @@ let fullName = person.fullName.bind(member);
   In other words when we need to pass values to a function that we don't want to execute straight away, as shown below, 
   used in a button listener where we can NOT set the function as ```operationController(OPERATORS[0])``` because would be trigger when the script is charged:
 
-  ```js
-  addBtn.addEventListener("click", operationController.bind(null, OPERATORS[0]));
-  ```
+```js
+addBtn.addEventListener("click", operationController.bind(null, OPERATORS[0]));
+```
+
+# Document Object Model (DOM)
+
+## What's the DOM?
+
+-  The browser provides the environment for Javascript to run, So the browser provides that, it also provides a bunch of APIs, a bunch of functionalities into which Javascript can tap so that Javascript can interact with the browser.
+
+The loaded and rendered HTML code that we are able to interact with, because the browser exposes functionality to let Javascript interact with
+it, that's called ***Document Object Model***, the abbreviation of course is ***DOM*** and that's where this term comes from.
+
+So the DOM in the end is this loaded and rendered HTML code or to be precise, the object representation of this code which the browser creates behind the scenes into which we can tap with Javascript. So Javascript can work with a bunch of objects which will be exposed to us as Javascript objects which in the end represent what the browser rendered or what the browser made of that HTML code which was provided.
+
+And in Javascript, we got certain methods, certain functionalities, as the below document query selector code that allows us to reach out to the loaded HTML code to get access to the first h1 element we have in the loaded HTML code;
+
+```js
+const titleE1 = document.querySelector("h1"); // Getting access to the first h1 element we have in the loaded HTML
+```
+
+<object>
+    <embed>
+        <p>Summary slide: <a href="/Summary%20slides/DOM/the-document-object-model-dom.pdf">DOM</a>
+        </p>
+    </embed>
+</object>
+
+## Document and window
+
+- **Document** is a property of the window global object. Now the difference is that document is the root DOM node which the browser exposes to all the ***rendered HTML elements***.
+
+This provides us with various methods and functionalities to get access to the elements. To query for HTML elements, to interact with its DOM contents, so to interact with a loaded HTML code. It is one of the most important objects which are available by the browser to allow us to interact with the loaded HTML document.
+
+- **Window** is a global object which has document as property, so window is the real topmost global object made available to you in Javascript in the browser and that reflects the active browser window or tab.
+
+It's basically your global entry point, our global storage for our script, so it gives us access to all the features that the browser wants to expose to you, the root entry point is always to the window object but it also gives you some window specific properties for example for measuring the window width.
+
+<object>
+    <embed>
+        <p>Summary slide: <a href="/Summary%20slides/DOM/the-document-object-model-dom.pdf">Document and window, 2^nd</a>
+        </p>
+    </embed>
+</object>
+
+### Accessing to document and window:
+
+- To access to the document properties we can execute the command below in our dev tools console:
+
+```js
+console.dir(document);
+```
+
+we were able to see the real Javascript object with all the properties that belong to it, as shown below:
+
+![Properties belong to document node](img\document_properties.png "Document properties")
+
+- Now in order to see the same with the window object we can just type ```window``` in the console, we should be able to see the response below:
+
+![Properties belong to window node](img\window_properties.png "Window properties")
+
+>As mention before window is the main node object therefore we don't need to type nothing else, that is why we can use ```alert()``` in our scripts even when ```window.alert()``` would be correct too.
+>
+>Browser always looks in the window object if you're calling or accessing any function, which is why alert works just as well as window.alert would.
+> Keep in mind that the window does not really give you access to the real window but just to the tab in which your script is running.
+
+## Querying elements:
+
+<object>
+    <embed>
+        <p>Summary slide: <a href="/Summary%20slides/DOM/querying-elements.pdf">Querying elements</a>
+        </p>
+    </embed>
+</object>
+
+## Nodes and elements:
+
+- ***Nodes*** are the objects that make up the DOM, everything in the DOM is a node. 
+
+- ***Elements*** are the nodes which are created off of HTML tags which were rendered.
+
+<object>
+    <embed>
+        <p>Summary slide: <a href="/Summary%20slides/DOM/nodes-vs-elements.pdf">Nodes and elements difference</a>
+        </p>
+    </embed>
+</object>
+
+# Node Query Methods
+
+Here's a summary of the various methods you got to reach out to DOM elements (note: you can only query for element nodes). Besides the below query methods, you also got these special properties on the document object to select parts of the document:
+
+```document.body``` => Selects the ```<body>``` element node.
+
+```document.head``` => Selects the ```<head>``` element node.
+
+```document.documentElement``` => Selects the ```<html>``` element node
+
+
+## Query methods
+
+```js
+document.querySelector(<CSS selector>);
+```
+
+Takes any CSS selector (e.g. ```'#some-id'```, ```'.some-class'``` or ```'div p.some-class'```) and returns the first (!) matching element in the DOM. Returns ```null``` if no matching element could be found.
+
+More information: https://developer.mozilla.org/en-US/docs/Web/API/Document/querySelector
+
+```js 
+document.getElementById(<ID>);
+```
+
+Takes an ID (without ```#```, just the id name) and returns the element that has this id. Since the same ID shouldn't occur more than once on your page, it'll always return exactly that one element. Returns ```null``` if no element with the specified ID could be found.
+
+More information: https://developer.mozilla.org/en-US/docs/Web/API/Document/getElementById
+
+```js
+document.querySelectorAll(<CSS selector>); 
+```
+
+Takes any CSS selector (e.g. ```'#some-id'```, ```'.some-class'``` or ```'div p.some-class'```) and returns all matching elements in the DOM as a static (non-live) NodeList. Returns and empty NodeList if no matching element could be found.
+
+More information: https://developer.mozilla.org/en-US/docs/Web/API/Document/querySelectorAll
+
+```js
+document.getElementsByClassName(<CSS CLASS>);
+```
+
+Takes a CSS class g (e.g. ```'some-class'```) and returns a live HTMLCollection of matched elements in your DOM. Returns an empty ```HTMLCollection``` if not matching elements were found.
+
+More information: https://developer.mozilla.org/en-US/docs/Web/API/Document/getElementsByClassName
+
+```js 
+document.getElementsByTagName(<HTML TAG>);
+```
+
+Takes an HTML tag (e.g. ```'p'```) and returns a live HTMLCollection of matched elements in your DOM. Returns an empty ```HTMLCollection``` if not matching elements were found.
+
+More information: https://developer.mozilla.org/en-US/docs/Web/API/Element/getElementsByTagName
+
+There also is the ```getElementsByName()``` method which really isn't used commonly (https://developer.mozilla.org/en-US/docs/Web/API/Document/getElementsByName).
