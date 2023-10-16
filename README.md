@@ -571,23 +571,60 @@ There also is the ```getElementsByName()``` method which really isn't used commo
     </embed>
 </object>
 
-
 ## Clarify html hierarchy terms:
 
 ![Html hierarchy terms](img\hierarchy_terms.png "Hierarchy terms")
 
 ## Traversing the DOM
 
-It means that once you selected one element, one node therefore, you might be interested in diving into
+- It means that once you selected one element, one node therefore, you might be interested in diving into all of its child nodes, for example to add it all list items in a list,
+so rather than manually selecting every element you might be interested in with query selector, you could take an element which you already did select and then move to its children
+or its siblings based on that element.
 
-all of its child nodes, for example to add it all list items in a list or anything like that,
+![Traversing concept](img\traversing-the-DOM.png "Traversing concept")
 
-so rather than manually selecting every element you might be interested in with query selector or so on,
+***Dev tool console example***
 
-you could take an element which you already did select and then move to its children or its siblings
+- Let's say that we want the second item of the next list:
 
-and so on
+  <ul>
+    <li>Item 1</li>
+    <li>Item 2</li>
+    <li>Item 3</li>
+  </ul>
 
-based on that element, that's what's traversing the DOM means
+- We could selected by quering it this way:
 
-![Traversing concept](img\Traversing-the-DOMpng "Traversing concept")
+```js
+  const ul = document.querySelector("ul"); 
+
+  ul.children // If we press enter we'll see the output below
+
+```
+
+![Getting children data from list](img\list-children-values.png)
+
+- As we saw in the image before we get an array so in order to get the second element of the list we could do:
+
+```js
+  ul.children[1]
+```
+
+And the response would be:
+
+![Getting second child value from list](img\second-child-value.png)
+
+>Keep in mind that the way described before is to get a collection of ***elements nodes***,
+>to get a text node list array-like object we have to execute:
+
+```js
+  ul.childNodes
+```
+![Nodes Children](img\child-nodes.png)
+
+```children``` only select child element nodes and ```childNodes``` therefore also includes text nodes
+
+> ***Reminder***
+> Nodes are the objects that make up the DOM, everything in the DOM is a node. HTML tags are just element nodes
+
+![Node tree](img\node-tree.png)
