@@ -403,6 +403,8 @@ And in Javascript, we got certain methods, certain functionalities, as the below
 const titleE1 = document.querySelector("h1"); // Getting access to the first h1 element we have in the loaded HTML
 ```
 
+>JavaScript is a "hosted language". The browser as host environment exposes this DOM API's to your JS code automatically.
+
 <object>
     <embed>
         <p>Summary slide: <a href="/Summary%20slides/DOM/the-document-object-model-dom.pdf">DOM</a>
@@ -470,6 +472,18 @@ we were able to see the real Javascript object with all the properties that belo
     </embed>
 </object>
 
+***Example***
+
+- This uses the CSS ID selector syntax to select the first matching element with an ID of "description".
+
+<div>
+    <p id="description">Hi there!</p>
+</div>
+
+```js
+document.querySelector("#description");
+```
+
 # Node Query Methods
 
 Here's a summary of the various methods you got to reach out to DOM elements (note: you can only query for element nodes). Besides the below query methods, you also got these special properties on the document object to select parts of the document:
@@ -524,3 +538,56 @@ Takes an HTML tag (e.g. ```'p'```) and returns a live HTMLCollection of matched 
 More information: https://developer.mozilla.org/en-US/docs/Web/API/Element/getElementsByTagName
 
 There also is the ```getElementsByName()``` method which really isn't used commonly (https://developer.mozilla.org/en-US/docs/Web/API/Document/getElementsByName).
+
+## Evaluation and manipulation of elements:
+
+<object>
+    <embed>
+        <p>Summary slide: <a href="/Summary%20slides/DOM/evaluating-and-manipulating-elements.pdf">Evaluating and manipulating elements</a>
+        </p>
+    </embed>
+</object>
+
+- What's a difference between document.querySelector('#someId') and document.getElementById('someId')?
+
+```querySelector``` uses a CSS selector and can match ANY alements (depending on provided selector), ```getElementById``` looks only for the ID.
+
+### Attributes vs properties in elements: 
+
+- ***Attributes*** -  is the thing in your HTML code, in your HTML text.
+
+***Example of atribute***
+
+- Here we can see ```value``` as attribute
+
+<input value="Enter your text here..." type="text">
+
+- ***Properties*** - is a value stored in the object that's created based on your HTML code.
+
+<object>
+    <embed>
+        <p>Summary slide: <a href="/Summary%20slides/DOM/attributes-vs-properties.pdf">Attributes vs properties elements</a>
+        </p>
+    </embed>
+</object>
+
+
+## Clarify html hierarchy terms:
+
+![Html hierarchy terms](img\hierarchy_terms.png "Hierarchy terms")
+
+## Traversing the DOM
+
+It means that once you selected one element, one node therefore, you might be interested in diving into
+
+all of its child nodes, for example to add it all list items in a list or anything like that,
+
+so rather than manually selecting every element you might be interested in with query selector or so on,
+
+you could take an element which you already did select and then move to its children or its siblings
+
+and so on
+
+based on that element, that's what's traversing the DOM means
+
+![Traversing concept](img\Traversing-the-DOMpng "Traversing concept")
