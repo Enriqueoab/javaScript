@@ -575,7 +575,12 @@ There also is the ```getElementsByName()``` method which really isn't used commo
 
 ![Html hierarchy terms](img\hierarchy_terms.png "Hierarchy terms")
 
-## Traversing the DOM
+# Traversing the DOM
+
+> Avoiding the continuous use of ```document.query*(<CSS selector>)``` we will achieve a better application performance as this queries has to scan the whole HTML elements.
+> In this secction we will se how to, using an already selected element, get the next sibling or the first child f the element selected.
+
+## Children and child nodes
 
 - It means that once you selected one element, one node therefore, you might be interested in diving into all of its child nodes, for example to add it all list items in a list,
 so rather than manually selecting every element you might be interested in with query selector, you could take an element which you already did select and then move to its children
@@ -622,9 +627,238 @@ And the response would be:
 ```
 ![Nodes Children](img\child-nodes.png)
 
-```children``` only select child element nodes and ```childNodes``` therefore also includes text nodes
+```children``` only select child element nodes and ```childNodes``` therefore also includes text nodes, white spaces included.
 
 > ***Reminder***
 > Nodes are the objects that make up the DOM, everything in the DOM is a node. HTML tags are just element nodes
 
 ![Node tree](img\node-tree.png)
+
+## Reaching out the parents nodes (Higher tag level):
+
+- Let's say that we want the second item of the next list:
+
+  <ul>
+    <li>Item 1</li>
+    <li>Item 2</li>
+    <li>Item 3</li>
+  </ul>
+
+- Let's say that we want the parent of the next list:
+
+```js
+  const li = document.querySelector("li"); 
+
+  li.parentElement // We could use li.parentNode too
+```
+
+> In almost all cases ```parentElement``` and ```parentNode``` will return the same, that is because only element nodes can have child nodes 
+> ***Example*** 
+> If you're on a child node so to say and you want to know all about the parent, it's an element node, text nodes can't have child nodes they can only hold text, no other nested content.
+
+
+- Let's say that we want an ancestor of the list:
+
+<body>
+  <header>
+    <h1>Ancestor picker</h1>
+  </header>
+
+  <ul>
+    <li>Item 1</li>
+    <li>Item 2</li>
+    <li>Item 3</li>
+  </ul>
+</body>
+
+- We could selected this way:
+
+```js
+  const li = document.querySelector("li"); 
+
+  li.closest("body") 
+```
+
+- ```closest(<CSS selector>)``` is method for selecting any ancestor anywhere up in the element tree as long as it indirectly wraps the unordered list, that's what matters here.
+```closest``` just takes a CSS selector to allow us to conveniently pick the nearest ancestor.
+
+> ```closest("header")```  wouldn't work because ```header``` is not an ancestor.
+
+## Reaching out the siblings nodes (Same tag level):
+
+- Let's say that we want the unordered list ```(<ul>)``` previous sibling, in this case, ```(<body>)```:
+
+<body>
+  <header>
+    <h1>Ancestor picker</h1>
+  </header>
+
+  <ul>
+    <li>Item 1</li>
+    <li>Item 2</li>
+    <li>Item 3</li>
+  </ul>
+  <input type="number" id="input-number" />
+</body>
+
+- We could make it as:
+
+```js
+  const ul = document.querySelector("ul"); 
+  ul.previousElementSibling // As we saw before we could get the text nodes too using ul.previousSibling instead
+```
+
+- To get the sibling after the unordered list ```(<ul>)```:
+
+```js
+  const ul = document.querySelector("ul");
+  ul.nextElementSibling // As we saw before we could get the text nodes too using ul.nextSibling instead
+```
+
+## Styling DOM elements:
+
+<object>
+    <embed>
+        <p>Summary slide: <a href="/Summary%20slides/DOM/styling-dom-elements.pdf">Styling elements</a>
+        </p>
+    </embed>
+</object>
+
+- Let's say that we want to change the styling of ```(<section>)```:
+
+<section>
+  <ul>
+    <li>Item 1</li>
+    <li>Item 2</li>
+    <li>Item 3</li>
+  </ul>
+</section>
+<button>Toggle (Set) visibility</button>
+
+- And we have the stiles and clases as below:
+
+<style>
+  .red-bg {
+    background-color: red;
+    color: white;
+  }
+
+  .visible {
+    display: block;
+  }
+
+  .invisible {
+    display: none;
+  }
+</style>
+
+- We could make it as:
+
+```js
+  const section = document.querySelector("section");
+  const button = document.querySelector("button");
+
+  section.className = "" // We reset the class name  of the section
+
+  button.addEventListener('click', () => {
+  // if (section.className === 'red-bg visible') {
+  //   section.className = 'red-bg invisible';
+  // } else {
+  //   section.className = 'red-bg visible';
+  // }
+
+  // section.classList.toggle('visible');
+  section.classList.toggle('invisible');
+});
+```
+- The result would look like:
+
+![Visible list](img\visible-list.png)
+
+- And if we press the "Toggle visibility" button:
+
+***Notice the "section" class name changed too***
+
+![Invisible list](img\invisible-list.png)
+
+## Creating and inserting elements:
+
+<object>
+    <embed>
+        <p>Summary slide: <a href="/Summary%20slides/DOM/creating-and-inserting-elements.pdf">Creating and inserting elements.pdf</a>
+        </p>
+    </embed>
+</object>
+
+## Examples how that works:
+
+### To replaced with new HTML code:
+
+```js
+  const section = document.querySelector("section");
+  section.inerHTML = "<h2>Title example</h2>";
+});
+```
+
+> To set new elements, you use ```innerHTML``` with a string that contains HTML code, like the example below, a new title.
+> It's important to know that it will always replace all the old HTML content. Any previous nodes between the section tags,
+> in our case, and not just direct child nodes **but any descendants will be entirely replaced with this new HTML code**.
+
+_After:_
+
+<section>
+  <ul>
+    <li class="list-item">Item 1</li>
+    <li class="list-item">Item 2</li>
+    <li class="list-item">Item 3</li>
+  </ul>
+</section>
+
+_Before:_
+
+<section>
+  <h2>Title example</h2>
+</section>
+
+### To add some HTML code:
+
+- Next a way of adding new content to an existing element with some HTML code in Javascript.
+
+```js
+  const ul = document.querySelector("ul");
+  ul.insertAdjacentHTML("beforeend", "<li>Item 4</li>");
+```
+_After:_
+
+<section>
+  <ul>
+    <li class="list-item">Item 1</li>
+    <li class="list-item">Item 2</li>
+    <li class="list-item">Item 3</li>
+  </ul>
+</section>
+
+_Before:_
+
+<section>
+  <ul>
+    <li class="list-item">Item 1</li>
+    <li class="list-item">Item 2</li>
+    <li class="list-item">Item 3</li>
+    <li>Item 4</li>
+  </ul>
+</section>
+
+> More details https://developer.mozilla.org/en-US/docs/Web/API/Element/insertAdjacentHTML
+
+![Adjacent HTML values summary](img\insertAdjacentHTML-values.png)
+
+- Representation of each posible value:
+
+<!-- beforebegin -->
+<p>
+  <!-- afterbegin -->
+  foo
+  <!-- beforeend -->
+</p>
+<!-- afterend -->
