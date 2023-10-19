@@ -910,4 +910,71 @@ This approach advantage is that we already have this object so we could add even
 
 ### Cloning DOM elements:
 
-- ```myElement.cloneNode()``` is available on every DOM node object, this will clone this node and will return a brand new one. It takes one optional argument and that's a boolean which default is false, and simply determines if a deep clone should be done, so with all child and descendant elements.
+- ```myElement.cloneNode(boolean)``` is available on every DOM node object, this will clone this node and will return a brand new one. It takes one optional **boolean argument**, which by default is false, and simply determines if a **deep clone should be done, so with all child and descendant elements**.
+
+```js
+  const ul = document.querySelector("ul");
+  
+  const secondLi = ul.children[1];
+  
+  const anotherLi = secondLi.cloneNode(true);
+  const andAnotherLi = anotherLi.cloneNode(true);
+  
+  anotherLi.textContent = "Item cloned";
+  andAnotherLi.textContent = "Another Item cloned";
+
+  ul.append(anotherLi, andAnotherLi);
+
+```
+_After:_
+
+![Cloning after appending](img\cloning-after-example.png)
+
+_Before:_
+
+![Cloning before appending](img\cloning-before-example.png)
+
+##  Live Node Lists vs Static Node Lists:
+
+- Example, if we run the next query:
+
+```js
+const listItems = document.querySelectorAll("li");
+
+```
+
+- So non-live array or non-live list _listItems_ is taking a snapshot of the DOM, of what we select there, when I run ```querySelectorAll``` and does not update that array, as we see in the picture below.
+Now, that's **not necessarily a disadvantage from a performance perspective or from a memory consumption perspective**
+
+_Result:_
+
+![Non live list](img\non-live-list.png)
+
+- Example, getting element:
+
+```js
+const listItems2 = list.getElementsByTagName("li");
+
+```
+
+- we can see this indeed is a live list which also includes our most recent addition. All the methods called like ```getElementsBySomething``` always gives us an array-like objects with live lists which will change when the items you queried in the past change. **That can or cannot be an advantage, often it will not matter**. **It could lead to a higher memory consumption if you're managing a lot of such collections which change all the time**. For the most part, query selectors should be used because it is more flexible, supports richer queries and therefore often is a common choice if you want to query for multiple items.
+
+_Result:_
+
+![Live list](img\live-list.png)
+
+## Removing elements: 
+
+- The newest way to do it is as shown below:
+
+```js
+  const ul = document.querySelector("ul");
+  ul.remove();
+```
+
+- If we want to avoid have potentially browsers support errors we can reach the parent of the element we want to remove and then remove the child of the parent, as below:
+
+```js
+  const ul = document.querySelector("ul");
+  ul.parentElement.removeChild(ul);
+```
