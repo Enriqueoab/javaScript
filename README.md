@@ -781,7 +781,7 @@ And the response would be:
 
 ![Invisible list](img\invisible-list.png)
 
-## Creating and inserting elements:
+# Creating and inserting elements:
 
 <object>
     <embed>
@@ -792,7 +792,7 @@ And the response would be:
 
 ## Examples how that works:
 
-### To replaced with new HTML code:
+### Replacing with new HTML code:
 
 ```js
   const section = document.querySelector("section");
@@ -820,9 +820,9 @@ _Before:_
   <h2>Title example</h2>
 </section>
 
-### To add some HTML code:
+### Adding HTML code:
 
-- Next a way of adding new content to an existing element with some HTML code in Javascript.
+- Next a way of adding new content to an existing element with some HTML code in Javascript. With the next way we wouldn't lose information of any kind even user input information.
 
 ```js
   const ul = document.querySelector("ul");
@@ -862,3 +862,52 @@ _Before:_
   <!-- beforeend -->
 </p>
 <!-- afterend -->
+
+> The downside just is you have no direct access to the newly rendered content.
+> Example : Let's say you inserted a button and you want to add an event listener.
+> You could use a query selector, but that would be a extra step in the process.
+
+### Creating a new DOM element:
+
+- In the next example let's create a new list element node, and then appended to the unordered list.
+This approach advantage is that we already have this object so we could add event listeners or change the style or do whatever we need.
+
+```js
+  const ul = document.querySelector("ul");
+  const newLi = document.createElement("li"); // Always call create element on the document
+
+  newLi.textContent = "Item 4"; // As the element node it's in js memory, we can modify it
+  ul.appendChild(newLi);
+
+  // Another ways to insert elements:
+
+  ul.prepend(newLi):// Insert "newLi" as first element (Check browsers support)
+
+  ul.lastElementChild.before(newLi);// Insert "newLi" before/after the last element ("Item 3") (Check browsers support)
+
+  ul.firstElementChild.replaceWith(newLi);// replace the last element ("Item 1") with "newLi" (Check browsers support)
+
+```
+- Example to add a new element after the "Item 2":
+
+```js
+  const ul = document.querySelector("ul");
+  const newLi = document.createElement("li");
+  const secondLi = ul.children[1];
+  newLi.textContent = "Item 4";
+
+  secondLi.insertAdjacentElement("afterend", newLi);
+```
+
+- Example in the view:
+
+![New DOM element console execution example](img\new-dom-element.png)
+
+> A newer approach to ```appendChild``` is ```append```, with append we could add some string too, not only an element,
+> ```append("Some Text")``` or multiple nodes at once ```append(newLi, "Some new text", anotherLi)```
+
+> It's worth to mention that ```appendChild``` has been around for longer so we have more browsers supporting it.
+
+### Cloning DOM elements:
+
+- ```myElement.cloneNode()``` is available on every DOM node object, this will clone this node and will return a brand new one. It takes one optional argument and that's a boolean which default is false, and simply determines if a deep clone should be done, so with all child and descendant elements.
