@@ -439,11 +439,11 @@ console.dir(document);
 
 we were able to see the real Javascript object with all the properties that belong to it, as shown below:
 
-![Properties belong to document node](img\document_properties.png "Document properties")
+![Properties belong to document node](/img/document_properties.png "Document properties")
 
 - Now in order to see the same with the window object we can just type ```window``` in the console, we should be able to see the response below:
 
-![Properties belong to window node](img\window_properties.png "Window properties")
+![Properties belong to window node](/img/window_properties.png "Window properties")
 
 >As mention before window is the main node object therefore we don't need to type nothing else, that is why we can use ```alert()``` in our scripts even when ```window.alert()``` would be correct too.
 >
@@ -573,7 +573,7 @@ There also is the ```getElementsByName()``` method which really isn't used commo
 
 ## Clarify html hierarchy terms:
 
-![Html hierarchy terms](img\hierarchy_terms.png "Hierarchy terms")
+![Html hierarchy terms](/img/hierarchy_terms.png "Hierarchy terms")
 
 # Traversing the DOM
 
@@ -586,7 +586,7 @@ There also is the ```getElementsByName()``` method which really isn't used commo
 so rather than manually selecting every element you might be interested in with query selector, you could take an element which you already did select and then move to its children
 or its siblings based on that element.
 
-![Traversing concept](img\traversing-the-DOM.png "Traversing concept")
+![Traversing concept](/img/traversing-the-DOM.png "Traversing concept")
 
 ***Dev tool console example***
 
@@ -607,7 +607,7 @@ or its siblings based on that element.
 
 ```
 
-![Getting children data from list](img\list-children-values.png)
+![Getting children data from list](/img/list-children-values.png)
 
 - As we saw in the image before we get an array so in order to get the second element of the list we could do:
 
@@ -617,7 +617,7 @@ or its siblings based on that element.
 
 And the response would be:
 
-![Getting second child value from list](img\second-child-value.png)
+![Getting second child value from list](/img/second-child-value.png)
 
 >Keep in mind that the way described before is to get a collection of ***elements nodes***,
 >to get a text node list array-like object we have to execute:
@@ -625,14 +625,14 @@ And the response would be:
 ```js
   ul.childNodes
 ```
-![Nodes Children](img\child-nodes.png)
+![Nodes Children](/img/child-nodes.png)
 
 ```children``` only select child element nodes and ```childNodes``` therefore also includes text nodes, white spaces included.
 
 > ***Reminder***
 > Nodes are the objects that make up the DOM, everything in the DOM is a node. HTML tags are just element nodes
 
-![Node tree](img\node-tree.png)
+![Node tree](/img/node-tree.png)
 
 ## Reaching out the parents nodes (Higher tag level):
 
@@ -773,13 +773,13 @@ And the response would be:
 ```
 - The result would look like:
 
-![Visible list](img\visible-list.png)
+![Visible list](/img/visible-list.png)
 
 - And if we press the "Toggle visibility" button:
 
 ***Notice the "section" class name changed too***
 
-![Invisible list](img\invisible-list.png)
+![Invisible list](/img/invisible-list.png)
 
 # Creating and inserting elements:
 
@@ -853,7 +853,7 @@ _After:_
 
 > More details https://developer.mozilla.org/en-US/docs/Web/API/Element/insertAdjacentHTML
 
-![Adjacent HTML values summary](img\insertAdjacentHTML-values.png)
+![Adjacent HTML values summary](/img/insertAdjacentHTML-values.png)
 
 - Representation of each posible value:
 
@@ -903,7 +903,7 @@ This approach advantage is that we already have this object so we could add even
 
 - Example in the view:
 
-![New DOM element console execution example](img\new-dom-element.png)
+![New DOM element console execution example](/img/new-dom-element.png)
 
 > A newer approach to ```appendChild``` is ```append```, with append we could add some string too, not only an element,
 > ```append("Some Text")``` or multiple nodes at once ```append(newLi, "Some new text", anotherLi)```
@@ -930,11 +930,11 @@ This approach advantage is that we already have this object so we could add even
 ```
 _After:_
 
-![Cloning after appending](img\cloning-after-example.png)
+![Cloning after appending](/img/cloning-after-example.png)
 
 _Before:_
 
-![Cloning before appending](img\cloning-before-example.png)
+![Cloning before appending](/img/cloning-before-example.png)
 
 ##  Live Node Lists vs Static Node Lists:
 
@@ -950,7 +950,7 @@ Now, that's **not necessarily a disadvantage from a performance perspective or f
 
 _Result:_
 
-![Non live list](img\non-live-list.png)
+![Non live list](/img/non-live-list.png)
 
 - Example, getting element:
 
