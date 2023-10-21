@@ -963,7 +963,7 @@ const listItems2 = list.getElementsByTagName("li");
 
 _Result:_
 
-![Live list](img\live-list.png)
+![Live list](/img/live-list.png)
 
 ## Removing elements: 
 
