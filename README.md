@@ -785,7 +785,7 @@ And the response would be:
 
 <object>
     <embed>
-        <p>Summary slide: <a href="/Summary%20slides/DOM/creating-and-inserting-elements.pdf">Creating and inserting elements.pdf</a>
+        <p>Summary slide: <a href="/Summary%20slides/DOM/creating-and-inserting-elements.pdf">Creating and inserting elements</a>
         </p>
     </embed>
 </object>
@@ -803,8 +803,10 @@ And the response would be:
 > To set new elements, you use ```innerHTML``` with a string that contains HTML code, like the example below, a new title.
 > It's important to know that it will always replace all the old HTML content. Any previous nodes between the section tags,
 > in our case, and not just direct child nodes **but any descendants will be entirely replaced with this new HTML code**.
+> **A good use case is when we don't need to interact much with the content, where we don't need to assign specific classes that change** 
+> **dynamically**.
 
-_After:_
+_Before:_
 
 <section>
   <ul>
@@ -814,7 +816,7 @@ _After:_
   </ul>
 </section>
 
-_Before:_
+_After:_
 
 <section>
   <h2>Title example</h2>
@@ -828,7 +830,7 @@ _Before:_
   const ul = document.querySelector("ul");
   ul.insertAdjacentHTML("beforeend", "<li>Item 4</li>");
 ```
-_After:_
+_Before:_
 
 <section>
   <ul>
@@ -838,7 +840,7 @@ _After:_
   </ul>
 </section>
 
-_Before:_
+_After:_
 
 <section>
   <ul>
@@ -978,3 +980,12 @@ _Result:_
   const ul = document.querySelector("ul");
   ul.parentElement.removeChild(ul);
 ```
+
+***Summary secction slide***
+
+<object>
+    <embed>
+        <p>Summary slide: <a href="/Summary%20slides/DOM/insertion-removal-summary.pdf">Insertion removal summary</a>
+        </p>
+    </embed>
+</object>
