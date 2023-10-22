@@ -84,6 +84,18 @@ function createAndAddMovie(title, image, rating) {
     console.log(movies);
 }
 
+function deleteMovie(title) {
+
+    const newMovie = {
+        title: title,
+        image: image,
+        rate: rating
+    };
+
+    movies.push(newMovie);
+    console.log(movies);
+}
+
 addMovieButton.addEventListener("click", () => {
     addModalView.classList.toggle(VISIBLE_CLASS);
     backdropBackground();
@@ -102,13 +114,27 @@ addActionButton.addEventListener("click", () => {
           <div class="movie-element__info">
             <h2>${titleInput.value}</h2>
             <p>${ratingInput.value}/5 stars</p>
+            <button id="btn-delete">Delete</button>
           </div>
         `;
         movieList.append(newMovie);
         invinsibleModalView();
         updateUI();
+        const deleteButton = document.getElementById("btn-delete");
+        deleteButton.addEventListener("click", function() {
+            alert("All the values are mandatory!"+newMovie.title);
+            for (let i = 0; i < movies.length; i++) {
+                
+                if (movies[i].title === newMovie.title) {
+                    movies.splice(i,1);
+                }
+                
+            }          
+              
+        });
         cleanModalForm();
-        backdropBackground();    
+        backdropBackground();
+        
     } else {
         alert("All the values are mandatory!");       
     }    

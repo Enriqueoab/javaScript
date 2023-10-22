@@ -48,6 +48,25 @@ header button:active {
   color: #995200;
 }
 
+#btn-delete {
+  font: inherit;
+  padding: 0.3rem 0.5rem;
+  background: #f67722;
+  border: 1px solid #f67722;
+  color: white;
+  border-radius: 6px;
+  box-shadow: 0 1px 8px rgba(0, 0, 0, 0.26);
+  cursor: pointer;
+  float: right;
+}
+
+#btn-delete:hover,
+#btn-delete:active {
+  background: red;
+  border-color: #f3cc4b;
+  color: black;
+}
+
 label {
   font-weight: bold;
   margin: 0.5rem 0;
