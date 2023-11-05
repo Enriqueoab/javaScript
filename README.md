@@ -989,3 +989,14 @@ _Result:_
         </p>
     </embed>
 </object>
+
+
+# Helpful resources.
+
+DOM getBoundingClientRect(): https://developer.mozilla.org/en-US/docs/Web/API/Element/getBoundingClientRect
+
+More on location Object: https://developer.mozilla.org/en-US/docs/Web/API/Location
+
+More on window Object: https://developer.mozilla.org/en-US/docs/Web/API/Window
+
+More on navigator Object: https://developer.mozilla.org/en-US/docs/Web/API/Navigator
