@@ -1000,3 +1000,45 @@ More on location Object: https://developer.mozilla.org/en-US/docs/Web/API/Locati
 More on window Object: https://developer.mozilla.org/en-US/docs/Web/API/Window
 
 More on navigator Object: https://developer.mozilla.org/en-US/docs/Web/API/Navigator
+
+
+## Function Closures:
+
+All functions are closures, so on are able to access outer environments and refer to them and the special thing about functions just is that they log in the surrounding environment and its variables so that they can remember it and use it when the function eventually gets called even if that logged in variable wasn't used outside of the function before so that Javascript does not dispose of these unused variables but keeps them so that the function that might be interested still can use that.
+
+## How does JavaScript handle asynchronous code execution?
+
+> JS is sinle-threaded but offloads longer-taking tasks (e.g timers) to the browser, which uses multiple threads.
+> The browser communicates with JS via the Event Loop and the Message Queue to let it know once a longer-taking task finished.
+
+
+# Promise States & "finally"
+
+> **PENDING** => Promise is doing work, neither ```then()``` nor ```catch()``` executes at this moment
+
+> **RESOLVED** => Promise is resolved => ```then()``` executes
+
+> **REJECTED**  => Promise was rejected => ```catch()``` executes
+
+- When you have another ```then()``` block after a ```catch()``` or ```then()``` block, the promise re-enters PENDING mode (keep in mind: ```then()``` and ```catch()``` always return a new promise - either not resolving to anything or resolving to what you return inside of ```then()```). Only if there are no more ```then()``` blocks left, it enters a new, final mode: SETTLED.
+
+Once SETTLED, you can use a special block - ```finally()``` - to do final cleanup work. ```finally()``` is reached no matter if you resolved or rejected before.
+
+Here's an example:
+
+```js
+somePromiseCreatingCode()
+    .then(firstResult => {
+        return 'done with first promise';
+    })
+    .catch(err => {
+        // would handle any errors thrown before
+        // implicitly returns a new promise - just like then()
+    })
+    .finally(() => {
+        // the promise is settled now - finally() will NOT return a new promise!
+        // you can do final cleanup work here
+    });
+```
+
+> You don't have to add a finally() block
