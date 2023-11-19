@@ -1006,21 +1006,81 @@ More on navigator Object: https://developer.mozilla.org/en-US/docs/Web/API/Navig
 
 All functions are closures, so on are able to access outer environments and refer to them and the special thing about functions just is that they log in the surrounding environment and its variables so that they can remember it and use it when the function eventually gets called even if that logged in variable wasn't used outside of the function before so that Javascript does not dispose of these unused variables but keeps them so that the function that might be interested still can use that.
 
+# Quiz interesting questions:
+
 ## How does JavaScript handle asynchronous code execution?
 
 > JS is sinle-threaded but offloads longer-taking tasks (e.g timers) to the browser, which uses multiple threads.
 > The browser communicates with JS via the Event Loop and the Message Queue to let it know once a longer-taking task finished.
 
+## What's a Promise in JavaScript?
+
+> Promises are objects which "wrap" (asynchronous) code to make working with it easier.
+> For a lot of asynchronous operations, you can also work with callbacks, promises make working with async code easier though.
+
+## What is "Chaining" in the context of a Promise?
+
+> You can chain ```then()``` and ```catch()``` methods onto each other since each ```then()``` and ```catch()``` method returns a new promises
+> which is yet to be settle.
+> Even if you don't add a return statement, then() and catch() always yield a new promise.
+
+
+## Does the last then() block in the below example execute (i.e. does the function passed to it execute)?
+
+```js
+  const myPromise = new Promise((resolve, reject) => {
+      setTimeout(() => {
+          resolve('Timer completed!');
+      }, 1000);
+  })
+      .then((text) => { throw new Error('Failed!') })
+      .catch(err => console.log(err))
+      .then(() => console.log('Does that execute?'));
+```
+
+> Yes, as long as you handle the error via a ```catch()``` block, you can have working ```then()``` blocks thereafter. ```catch()``` also returns a new promise.
+
+## What's the difference between ```async```/ ```await``` and Promises?
+
+> ```async```/ ```await``` in the end just are a code transformation which still use promises behind the scenes.
+
+## What's the promise equivalent to this code?
+
+```js
+  async function wait() {
+      try {
+          const result = await doSomething();
+          console.log(result);
+      } catch (error) {
+          console.log('Error!');
+      }
+  }
+```
+
+- The promise equivalent would be:
+
+```js
+  function wait(){
+    doSomething()
+      .then(result => {
+        console.log(result);
+      })
+      .catch (error => {
+          console.log('Error!');
+      });
+  }
+
+```
 
 # Promise States & "finally"
 
-> **PENDING** => Promise is doing work, neither ```then()``` nor ```catch()``` executes at this moment
+- **PENDING** => Promise is doing work, neither ```then()``` nor ```catch()``` executes at this moment
 
-> **RESOLVED** => Promise is resolved => ```then()``` executes
+- **RESOLVED** => Promise is resolved => ```then()``` executes
 
-> **REJECTED**  => Promise was rejected => ```catch()``` executes
+- **REJECTED**  => Promise was rejected => ```catch()``` executes
 
-- When you have another ```then()``` block after a ```catch()``` or ```then()``` block, the promise re-enters PENDING mode (keep in mind: ```then()``` and ```catch()``` always return a new promise - either not resolving to anything or resolving to what you return inside of ```then()```). Only if there are no more ```then()``` blocks left, it enters a new, final mode: SETTLED.
+When you have another ```then()``` block after a ```catch()``` or ```then()``` block, the promise re-enters PENDING mode (keep in mind: ```then()``` and ```catch()``` always return a new promise - either not resolving to anything or resolving to what you return inside of ```then()```). Only if there are no more ```then()``` blocks left, it enters a new, final mode: SETTLED.
 
 Once SETTLED, you can use a special block - ```finally()``` - to do final cleanup work. ```finally()``` is reached no matter if you resolved or rejected before.
 
@@ -1041,4 +1101,4 @@ somePromiseCreatingCode()
     });
 ```
 
-> You don't have to add a finally() block
+> You don't have to add a finally() block.
