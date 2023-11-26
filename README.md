@@ -1102,3 +1102,90 @@ somePromiseCreatingCode()
 ```
 
 > You don't have to add a finally() block.
+
+## Load files dinamically 
+
+- If we would only load these files when we need them, we would speed up the initial page load because we would request less files to be downloaded and parsed. So to load modules conditionally, we can use an alternative import syntax shown below:
+
+```js
+import("./urlToModule/Tooltip.js").then(module => {
+  const tooltip = Tooltip(
+    () => {
+      this.hasActiveTooltip = false;
+    },
+    ....
+  )
+})
+
+```
+
+# Browser side data storage
+
+- Browser-side data storage refers to the capability of web browsers to store data locally on a user's device, allowing websites and web applications to save and retrieve information. These mechanisms enable developers to enhance user experiences by customizing content, maintaining user preferences, and improving performance. Several technologies facilitate browser-side data storage:
+
+![Browser storage definition](/img/what-is-browser-storage.png.png)
+
+| Mechanism       | Description                                                                                                                                              | Key Difference                                                                                                                                                                                |
+|-----------------|----------------------------------------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Cookies         | Small pieces of data stored by websites in a user's browser, holding preferences, session IDs, or other information. Size limited (usually up to 4KB).  | Limited in size and scope, primarily used for short-term data storage and sent with every HTTP request, impacting performance.                                                                  |
+| Web Storage     | Includes `localStorage` and `sessionStorage`, offering larger capacities (up to 5MB or more) than cookies. `localStorage` retains data indefinitely.    | Provides larger storage capacity and retains data even after the browser is closed. `sessionStorage` stores data only for a single session and is limited to that session's lifetime.              |
+| IndexedDB       | Advanced API for storing structured data in the browser. Potent but requires more code and understanding compared to other storage mechanisms.             | Offers more powerful and scalable storage for larger amounts of structured data but requires complex handling and is more suitable for complex data structures.                               |
+| Cache API       | Allows caching of network requests and responses, enhancing website performance by serving content locally, reducing re-downloading.                     | Caches network resources, reducing reliance on the server for subsequent requests and improving website speed.                                                                                |
+| Service Workers | Enable the creation of offline web experiences by intercepting network requests and caching resources for offline use.                                    | Works as a programmable proxy, intercepting network requests and allowing developers to manage caching and offline experiences, enhancing the site's offline capabilities.                   |
+
+![Browser side storages](/img/browser-side-storage.png)
+
+
+# JavaScript and browser support
+
+- JavaScript syntax comprises the language rules for coding, encompassing variables, loops, and functions. Browser APIs, on the other hand, offer tools provided by browsers to interact with features like the DOM and device-specific functionalities. While JavaScript syntax remains consistent, browser support for specific APIs may vary across different browsers and versions. This discrepancy often requires developers to use techniques like polyfills or feature detection to ensure broader compatibility across browsers.
+
+![Difference between JS syntax and browser apis](/img/js-syntax-vs-browser-apis.png)
+
+## Ways to check for features and browser support
+
+![Ways to checking browser support](/img/checking-browser-support.png)
+
+
+# Polyfill (Specific features compatibility level)
+
+- A polyfill is a piece of code, usually written in JavaScript, that provides modern functionality on older browsers that do not support certain features, methods, or APIs of newer web standards, it can be a third party feature. It fills the "gaps" in browser compatibility, allowing developers to use the latest features while ensuring that their code works across a wider range of browsers and versions.
+
+The term **polyfill**  combines "poly" (meaning many) and "fill," suggesting that it fills in the gaps for many browsers that lack support for specific functionalities.
+
+```js
+  // Polyfill for startsWith method
+  if (!String.prototype.startsWith) {
+      String.prototype.startsWith = function(searchString, position) {
+          position = position || 0;
+          return this.substr(position, searchString.length) === searchString;
+      };
+  }
+
+  // Example usage of startsWith method and polyfill
+  const str = 'Hello, world!';
+  const substring = 'Hello';
+
+  // Using startsWith method
+  if (str.startsWith(substring)) {
+      console.log('The string starts with "Hello"');
+  } else {
+      console.log('The string does not start with "Hello"');
+  }
+```
+
+# Transpiling (Browser compatibility level)
+
+- Transpiling is the process of converting code written in one version of a programming language (e.g., ECMAScript 6/ES6 or later) into an earlier version (usually ECMAScript 5/ES5) that older browsers can understand and execute. It enables developers to write code using the latest language features and syntax while ensuring compatibility with browsers that lack support for these newer features. Transpilers like Babel are commonly used tools that perform this conversion, allowing developers to use modern JavaScript features and then automatically convert them into versions that are compatible with a wider range of browsers.
+
+![Transpilation](/img/transpilation.png)
+
+# Transpiling VS polyfill
+
+| Aspect         | Transpiling                                                                                                                                                                     | Polyfilling                                                                                                                                                                       |
+|----------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Definition     | Process of converting code from a newer JavaScript version to an older version for compatibility with older browsers.                                                           | Technique to provide substitute implementations for missing browser features or APIs, enabling support for newer functionalities in older browsers.                               |
+| Purpose        | Enables writing code using the latest language features while ensuring compatibility with browsers that lack support for these features.                                       | Addresses specific missing functionalities by adding alternative implementations, ensuring consistent behavior across browsers.                                                      |
+| Tools          | Transpilers like Babel are commonly used to convert modern JavaScript code into backward-compatible versions.                                                                    | Developers use polyfills—JavaScript code snippets or libraries—created to replicate the behavior of newer features or APIs in browsers that don't natively support them.             |
+| Example        | Converts ES6/ES7 code (arrow functions, `let` and `const` declarations) into ES5, allowing execution in older browsers.                                                       | Adds methods like `startsWith()` for strings in browsers that lack support for this ES6 method, ensuring consistent behavior when checking string start positions across different browsers. |
+| Key Difference | Focuses on converting code written in newer JavaScript versions into older versions for broader browser compatibility.                                                            | Addresses specific missing functionalities by providing alternative implementations, ensuring consistent behavior for newer features across different browsers.                         |
