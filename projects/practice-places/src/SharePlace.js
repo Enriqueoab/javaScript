@@ -5,11 +5,30 @@ class PlaceFinder {
         const addressForm = document.querySelector("form");
         const locateUserBtn = document.getElementById("locate-btn");
 
-        addressForm.addEventListener("click", this.locateUserHandler);
-        locateUserBtn.addEventListener("submit", this.findAddressHandler);
+        locateUserBtn.addEventListener("click", this.locateUserHandler);
+        addressForm.addEventListener("submit", this.findAddressHandler);
     }
 
-    locateUserHandler() {}
+    locateUserHandler() {
+        if (!navigator.geolocation) {
+            alert("No location browser support, add your address manually!")
+            return;
+        }
+        navigator.geolocation.getCurrentPosition(
+           success => {
+                const Geolocation = {
+                    latitude: success.coords.latitude,
+                    longitude: success.coords.longitude
+                }
+            console.log(success);
+            
+           },
+           error => {
+            alert("Not able to get location, add your address manually!")
+        });
+    }
 
     findAddressHandler() {}
 }
+
+new PlaceFinder();
