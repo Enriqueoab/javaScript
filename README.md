@@ -1189,3 +1189,12 @@ The term **polyfill**  combines "poly" (meaning many) and "fill," suggesting tha
 | Tools          | Transpilers like Babel are commonly used to convert modern JavaScript code into backward-compatible versions.                                                                    | Developers use polyfills—JavaScript code snippets or libraries—created to replicate the behavior of newer features or APIs in browsers that don't natively support them.             |
 | Example        | Converts ES6/ES7 code (arrow functions, `let` and `const` declarations) into ES5, allowing execution in older browsers.                                                       | Adds methods like `startsWith()` for strings in browsers that lack support for this ES6 method, ensuring consistent behavior when checking string start positions across different browsers. |
 | Key Difference | Focuses on converting code written in newer JavaScript versions into older versions for broader browser compatibility.                                                            | Addresses specific missing functionalities by providing alternative implementations, ensuring consistent behavior for newer features across different browsers.                         |
+
+
+# What is node.js?
+
+- As a hosted language we can execute Javascript anywhere by simply taking the Javascript engine out of the browser basically. We can then add our own APIs if we want to, not APIs to work with the DOM because if the environment is detached from the web page, there is no DOM (HTML), but instead we might want to add different APIs, APIs to, for example, work with the local file system, which is not possible in the browser due to security reasons,
+and that's exactly what Node.js does.
+
+> Node.js is essentially the extracted V8 engine Chrome offers enriched by extra APIs, so its that engine you know from the browser
+> but basically instead of the browser APIs, it has access to other APIs and it runs outside of the browser, this is Node.js
