@@ -1123,7 +1123,7 @@ import("./urlToModule/Tooltip.js").then(module => {
 
 - Browser-side data storage refers to the capability of web browsers to store data locally on a user's device, allowing websites and web applications to save and retrieve information. These mechanisms enable developers to enhance user experiences by customizing content, maintaining user preferences, and improving performance. Several technologies facilitate browser-side data storage:
 
-![Browser storage definition](/img/what-is-browser-storage.png.png)
+![Browser storage definition](/img/what-is-browser-storage.png)
 
 | Mechanism       | Description                                                                                                                                              | Key Difference                                                                                                                                                                                |
 |-----------------|----------------------------------------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
