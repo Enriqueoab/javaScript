@@ -439,11 +439,11 @@ console.dir(document);
 
 we were able to see the real Javascript object with all the properties that belong to it, as shown below:
 
-![Properties belong to document node](/img/document_properties.png "Document properties")
+![Properties belong to document node](/img/document_properties.png "Properties belong to document node")
 
 - Now in order to see the same with the window object we can just type ```window``` in the console, we should be able to see the response below:
 
-![Properties belong to window node](/img/window_properties.png "Window properties")
+![Properties belong to window node](/img/window_properties.png "Properties belong to window node")
 
 >As mention before window is the main node object therefore we don't need to type nothing else, that is why we can use ```alert()``` in our scripts even when ```window.alert()``` would be correct too.
 >
@@ -1197,4 +1197,6 @@ The term **polyfill**  combines "poly" (meaning many) and "fill," suggesting tha
 and that's exactly what Node.js does.
 
 > Node.js is essentially the extracted V8 engine Chrome offers enriched by extra APIs, so its that engine you know from the browser
-> but basically instead of the browser APIs, it has access to other APIs and it runs outside of the browser, this is Node.js
+> but basically instead of the browser APIs, it has access to other APIs and it runs outside of the browser, this is Node.js.
+
+![Node slide explanation](/img/node_javascript.png)
