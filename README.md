@@ -1261,8 +1261,7 @@ app.listen(3000);
 > HTML static content and dynamic content, using special syntax, this will be all then merged together into HTML file on the server side and sent back to the 
 > client, so on the client we will receive an HTML file but it allows us to enrich this HTML file with dynamic content.
 
-- For that we have first to create our view, where we are going to be using html and some EJS special syntax. the file has to have
-an .ejs extension. In our case we will call it index.ejs
+- For that we have first to create our view, where we are going to be using html and some EJS special syntax. the file has to have a .ejs extension. In our case we will call it index.ejs
 
 ```html
 
@@ -1314,3 +1313,33 @@ app.use((req, res, next) => {
 app.listen(3000); 
 
 ```
+# CORS (Cross Origin Resource Sharing) theory
+
+- By default, as a security measure, browsers block cross origin requests from differen servers, only requests to the same origin are allowed (same domain).
+
+![CORS theory slide](/img/cors-slide.png)
+
+> We would encounter the errors below:
+
+![CORS console error](/img/cors-error.png)
+
+> As the browser send an OPTIONS request for some HTTP methods, for example when sending a POST method,
+> we could encounter the error below too.
+
+![CORS console headers error](/img/cors-headers-error.png)
+
+## CORS error fix:
+
+-  We have to set some extra headers that signal to the browser that we're allowing this access from the other page. The extra headers that we have to add are shown below:
+
+```js
+
+  app.use((req, res, next) => {
+    res.setHeader('Access-Control-Allow-Origin', '*'); // "*" can be our especific url. * = any server
+    res.setHeader('Access-Control-Allow-Methods', 'POST, GET, OPTIONS'); // To restrict the HTTP methods allowed
+    res.setHeader('Access-Control-Allow-Headers', 'Content-Type'); // Allow the content type header that the client might send to us
+    next();
+  });
+
+```
+
