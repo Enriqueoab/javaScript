@@ -1200,3 +1200,117 @@ and that's exactly what Node.js does.
 > but basically instead of the browser APIs, it has access to other APIs and it runs outside of the browser, this is Node.js.
 
 ![Node slide explanation](/img/node_javascript.png)
+
+# What is express.js?
+
+- It is a framework for Node.js which makes building web applications, web servers with Node.js easier, it does the same as node.js but behing the scenes. In order to use it we have to make our project a NPM one running:
+
+```sh
+  npm init 
+```
+
+Once we confirm the values asked, a ```package.json``` file will be created so we can install new dependencies in the project. Same idea as in the client side where we enrich our project using npm packages. 
+The main difference is that we won't need ```webpack```, for example, as node natively support these packages in Node modules.
+
+And we can install Express running:
+
+```sh
+  npm install express --save
+```
+
+If the operation is successful it will create a ```node_modules``` and a ```package-lock.json``` files.
+
+## How is express.js works?
+
+- It's a middleware-driven framework, that means, in the end Express is all about funneling the incoming request through different functions which all received the request and all can do something with it and each function can either stop the request and send back a response, at which point the request will not reach any other function thereafter, any other middleware or a function forwards the request to the next function, o the next middleware in line.
+
+> So a middleware is really just a function that gets the request and then can do something with it.
+
+Here we have an implemented example:
+
+```js
+
+const express = require("express");
+const bodyParser = require("body-parser");
+
+const app = express();
+
+app.use(bodyParser.urlencoded()); // Another middleware using a third party package. (parsing the form data in our case)
+
+app.use((request, response, next) => { // To register middelware, orders matter.
+  response.setHeader("Content-Type", "text/html");
+  next(); // In order to tell Express that we want to execute the next middleware i line
+});
+
+app.use((request, response, next) => {
+
+  // All middelware work with the same request. What we set before will be carried over into this function
+    const userName = req.body.username || 'Unknown User'; //USING THE PARSED BODY MADE BY THE FIRST MIDDDLEWARE
+  res.send(`<h1>Hi ${userName}</h1><form method="POST" action="/"><input name="username" type="text"><button type="submit">Send</button></form>`);
+
+
+});
+
+app.listen(3000); 
+
+```
+
+### Example Rendering Server-side HTML with Templates & EJS
+
+> **EJS package** allowed us to create template which contains HTML content but where we can also inject dynamic content so that we can have a mixture of
+> HTML static content and dynamic content, using special syntax, this will be all then merged together into HTML file on the server side and sent back to the 
+> client, so on the client we will receive an HTML file but it allows us to enrich this HTML file with dynamic content.
+
+- For that we have first to create our view, where we are going to be using html and some EJS special syntax. the file has to have
+an .ejs extension. In our case we will call it index.ejs
+
+```html
+
+  <!DOCTYPE html>
+  <html lang="en">
+    <head>
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+      <title>NodeJS Demo</title>
+    </head>
+    <body>
+      <h1>Hello <%= user %></h1> 
+      <form method="POST" action="/">
+        <input name="username" type="text" />
+        <button type="submit">Send</button>
+      </form>
+    </body>
+  </html>
+
+```
+
+```js
+
+const express = require("express");
+const bodyParser = require("body-parser");
+
+const app = express();
+
+app.set("view engine","ejs"); // Tells Express what engine use for parssing our views (template) in our case ejs
+
+app.set("views","path/to/views/folder"); // Where to find our views
+
+app.use(bodyParser.urlencoded()); // Another middleware using a third party package. (parsing the form data in our case)
+
+app.use((req, res, next) => {
+  res.setHeader('Content-Type', 'text/html');
+  next();
+});
+
+app.use((req, res, next) => {
+  const userName = req.body.username || 'Unknown User';
+  // res.render('Just name of the view file', {All the data we want to provide to the template});
+  res.render('index', {
+    user: userName
+  });
+});
+
+app.listen(3000); 
+
+```
