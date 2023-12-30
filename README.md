@@ -1343,3 +1343,9 @@ app.listen(3000);
 
 ```
 
+
+# Security
+
+## Some attack patterns:
+
+![Attack patterns to be aware of](/img/security.png)
