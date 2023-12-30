@@ -1349,3 +1349,9 @@ app.listen(3000);
 ## Some attack patterns:
 
 ![Attack patterns to be aware of](/img/security.png)
+
+
+> The two most important attack patterns or vulnerabilities are **Security details in your code**
+> which you expose accidentally and **Cross site scripting attacks**.
+
+- These are the Javascript specific attack patterns whereas the CSRF pattern works with any language on the backend and with no Javascript code in the frontend and causes a general security concept but two leftmost holes, security holes are the important ones you might have in your application. All your Javascript code is always readable by anyone, that's something we have to keep in mind. Users might execute scripts to do dangerous stuff, like read personal data, send malicious requests with user data, etc.
