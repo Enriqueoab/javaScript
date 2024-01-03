@@ -1363,21 +1363,21 @@ app.listen(3000);
 
 ![Different kinds of Applications](/img/kinds-of-applications.png)
 
-- You can build different kinds of websites/ web apps.
+**You can build different kinds of websites/ web apps.**
 
 There are three major types:
 
-Static Websites (just HTML + CSS + JS)
+- Static Websites (just HTML + CSS + JS)
 
-Single-Page-Applications (SPAs, HTML + CSS + JS with only one HTML page being served, client-side JS is used to re-render the page dynamically)
+- Single-Page-Applications (***SPAs, HTML + CSS + JS with only one HTML page being served, client-side JS is used to re-render the page dynamically***)
 
-Dynamic/ Server-side rendered Web Applications: Websites where the HTML pages are created dynamically on the server (e.g. via templating engines like EJS).
+- Dynamic/ Server-side rendered Web Applications: Websites where the HTML pages are created dynamically on the server (***e.g. via templating engines like EJS***).
 
 > When deploying such websites, it's important to understand that sites with NO server-side code
-> (i.e. Static Websites and SPAs), required only a static host (e.g. AWS S3, Firebase Hosting).
+> (***i.e. Static Websites and SPAs***), required only a static host (e.g. AWS S3, Firebase Hosting).
 
 > Pages where HTML is generated dynamically on the server require a host that is capable of executing the 
-> server-side code (i.e. a server that supports NodeJS, PHP or whatever language is being used).
+> server-side code (***i.e. a server that supports NodeJS, PHP or whatever language is being used***).
 
 ## Deployment Steps:
 
