@@ -1389,23 +1389,23 @@ There are three major types:
 
 ## For the startup time performance:
 
-- *~An important factor is the size of our scripts:~* The time it takes to display something on the screen and the time it takes until the user is able to do something with that screen, the JavaScript file size can affect both.
+- ***An important factor is the size of our scripts:*** The time it takes to display something on the screen and the time it takes until the user is able to do something with that screen, the JavaScript file size can affect both.
 
-- *~Amount of HTTP round trips:~* The more HTTP round trips it takes to finally have the final state of our page, the longer
+- ***Amount of HTTP round trips:*** The more HTTP round trips it takes to finally have the final state of our page, the longer
 it will take until our page is ready to run.
 
 ## For the runtime time performance:
 
 ### It's all about optimizing our code execution.
 
-- *~DOM access:~* We want to avoid unnecessary DOM operations, working with the DOM is really expensive from a performance perspective. Ex: render too many elements on the screen even though maybe just one element needs to change.
+- ***DOM access:*** We want to avoid unnecessary DOM operations, working with the DOM is really expensive from a performance perspective. Ex: render too many elements on the screen even though maybe just one element needs to change.
 
-- *~Memory leaks:~* A lot of web pages out there do have tiny memory leaks but if you have bigger ones, they can really add up and can lead to our page becoming slower or to actually even crash in the worst case scenario.
+- ***Memory leaks:*** A lot of web pages out there do have tiny memory leaks but if you have bigger ones, they can really add up and can lead to our page becoming slower or to actually even crash in the worst case scenario.
 
-- *~Code alternatives:~* It's also interesting to think about different ways of solving one and the same problem in Javascript,
+- ***Code alternatives:*** It's also interesting to think about different ways of solving one and the same problem in Javascript,
 so to find code alternatives with better performance. Ex: When you loop through an array, don't all have the same performance.
 
-- *~Micro optimizations:~* We  could opt to use a certain data structure because it's a bit quicker than that other approach we used before. Generally, you want to shy away from such micro optimizations though.
+- ***Micro optimizations:*** We  could opt to use a certain data structure because it's a bit quicker than that other approach we used before. Generally, you want to shy away from such micro optimizations though.
 
 > Keep in mind that Javascript is just one part, when we talk about optimizing our web page, it also includes things like 
 > writing efficient CSS, HTML and so on. Javascript typically is the most important thing to optimize.
