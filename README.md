@@ -1409,3 +1409,11 @@ so to find code alternatives with better performance. Ex: When you loop through 
 
 > Keep in mind that Javascript is just one part, when we talk about optimizing our web page, it also includes things like 
 > writing efficient CSS, HTML and so on. Javascript typically is the most important thing to optimize.
+
+## Measuring performance:
+
+![Advices for auditing performance](/img/auditing-performance.png)
+
+
+![Some ways to measure performance](/img/measuring-performance.png)
+
