@@ -1417,3 +1417,47 @@ so to find code alternatives with better performance. Ex: When you loop through 
 
 ![Some ways to measure performance](/img/measuring-performance.png)
 
+### Measure performance Examples:
+
+- We can use to find out how often we interact with DOM in the ```"Elements" tab in the Chrome dev tools.``` When we interact wth a DOM element, in the next example a list element. Now Chrome highlights the items, in the pictiure below, which were touched by it, so which were changed or which were added or re-rendered and this already gives us one hint at something which might not be perfect at the moment, as deleting the last item will make the whole list get re-render. 
+
+![Lit up re-render elements](/img/re-rendered-elements.png)
+
+
+- In the ```"Network" tab in the Chrome dev tools``` we can find out how much code we're downloading, how long it takes and
+how many round trips we have.
+
+![File sizes in network devTools tab](/img/network-tab.png)
+
+> Since we have webpack, in the example code, we don't have too many round trips. They are actually bundled together.
+> In the production mode webpack config, will shrink our code and optimize it even more.
+
+- In the same tab we can test our code in a slower network, Disabling cache and choosing it in the drop down to the right as shown below:
+
+![Disable cache and slower network test](/img/slower-network-test.png)
+
+- We can do something similar in the ```"Performance" tab in the Chrome dev tools``` and in the "CPU" dropdown select any "slowdown" value (We can see these options clicking the gear). So if we had a page with a lot of complex animations running or a lot of complex interactions, we could use CPU slow down here to check whether it might have issues on slower devices.
+
+![Slow down performance](/img/performance-slowdown.png)
+
+- We can record the ```"Performance" tab``` too in order to analyze all the steps that a process/action in our web make. That way we can see which parts are creating performance issues. The steps would be as follow:
+
+1.) Click the record button:
+
+![Recording web action. Analyzing performance](/img/record-button-dev-tools.png)
+
+2.) Make the action that we want to analyze. In our case remove product.
+
+3.) Stop recording to see the process and metrics. Screenshots of the step by step, memory consuption to analyze memory leaks, timeline of the snapshot we captured, etc:
+
+![Analyzing performance](/img/after-action-performance.png)
+
+![Analyzing timeline](/img/zoom-timeline.png)
+
+- We can do the same "Record" in the ```Memory tab``` to get a snapshot of all the memory storage used in our web. In the image below we are comparing snapshots:
+
+![Comparing memory snapshots](/img/memory-comparation.png)
+
+- We can use the ```Audit tab``` too in order to see how our aplication perform and have a general idea of how our application behave so we may want to analyze a specific problem in detail using any other specific tab descripted before: 
+
+![Audit tab metrics](/img/audit-tab-analysis.png)
