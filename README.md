@@ -1417,7 +1417,7 @@ so to find code alternatives with better performance. Ex: When you loop through 
 
 ![Some ways to measure performance](/img/measuring-performance.png)
 
-### Measure performance Examples:
+### Ways to Measure performance:
 
 - We can use to find out how often we interact with DOM in the ```"Elements" tab in the Chrome dev tools.``` When we interact wth a DOM element, in the next example a list element. Now Chrome highlights the items, in the pictiure below, which were touched by it, so which were changed or which were added or re-rendered and this already gives us one hint at something which might not be perfect at the moment, as deleting the last item will make the whole list get re-render. 
 
