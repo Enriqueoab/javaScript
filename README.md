@@ -1461,3 +1461,42 @@ how many round trips we have.
 - We can use the ```Audit tab``` too in order to see how our aplication perform and have a general idea of how our application behave so we may want to analyze a specific problem in detail using any other specific tab descripted before: 
 
 ![Audit tab metrics](/img/audit-tab-analysis.png)
+
+> We can explore deeper in the devs tools and optimize performance techniques here:
+> https://developer.chrome.com/docs/devtools/
+> https://web.dev/articles/optimize-javascript-execution
+
+- Measuring performance in our code using ```performance.now()```:
+
+```js
+  let j = 0;
+  var startMeasuring = performance.now();
+  outerWhile: do {
+    console.log('Outer', j);
+    innerFor: for (let k = 0; k < 5; k++) {
+      if (k === 3) {
+        break outerWhile;
+      }
+      console.log('Inner', k);
+    }
+    j++;
+  }
+  var endMeasuring = performance.now();
+  // Log time running the loop
+  console.log(endMeasuring - startMeasuring);
+```
+> We can create our own test cases using the web https://jsperf.app/
+> In the latest secction (https://jsperf.app/latest) we can see others test cases comparing
+> different ways of achive varios things.
+
+![Runtime performance highlights](/img/runtime-performance-highlights.png)
+
+![Startup performance highlights](/img/startup-performance-highlights.png)
+
+- Helpful performance resources:
+
+Google Performance Docs: https://developers.google.com/web/fundamentals/performance/rendering
+
+Chrome DevTools Performance Docs: https://developers.google.com/web/tools/chrome-devtools/evaluate-performance/reference
+
+Chrome DevTools Memory Docs: https://developers.google.com/web/tools/chrome-devtools/memory-problems
