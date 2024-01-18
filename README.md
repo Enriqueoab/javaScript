@@ -1500,3 +1500,18 @@ Google Performance Docs: https://developers.google.com/web/fundamentals/performa
 Chrome DevTools Performance Docs: https://developers.google.com/web/tools/chrome-devtools/evaluate-performance/reference
 
 Chrome DevTools Memory Docs: https://developers.google.com/web/tools/chrome-devtools/memory-problems
+
+# Introduction to testing
+
+## Types of tests:
+
+- **Fully isolated**, test a function that takes some input and returns some output. we can test for input x and y, we expect to get output z. That would be a **unit test** because we test a single, isolated unit of our application.
+
+- **With some dependencies**, so we have no isolated piece of code anymore but we might have a function that calls another function and therefore the function we're testing depends on the result of another function and that is called an **integration test** because there, we're testing more than just a single unit.
+
+- **Full flow**, the full application or a part of the full application and this is called **end-to-end** or also **user interface test**.
+What we do here is what we could do manually as well in the browser but that we write kind of an automated script that executes a certain series of steps for us and then we can check if the result is the result we expected to get.
+
+**Complexity and frequecy of tests:**
+
+![Types of tests](/img/kind-of-tests.png)
