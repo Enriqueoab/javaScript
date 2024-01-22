@@ -1515,3 +1515,165 @@ What we do here is what we could do manually as well in the browser but that we 
 **Complexity and frequecy of tests:**
 
 ![Types of tests](/img/kind-of-tests.png)
+
+## Setting up testing environment
+
+First we have to run the commands below, in the "testing-practice" folder:
+
+```sh
+npm install
+```
+
+And then ***Jest*** a library for both running tests and asserting:
+
+```sh
+npm install --save-dev jest
+```
+
+- Now as we are going to test the functions in the ```util.js``` file we will create a file named ```util.test.js```. Jest will automatically detect files with .test or .spec in them, and run them automatically.
+
+Rmemember to run command below:
+
+```sh
+  npm install express --save
+```
+
+We can add the test below to our file:
+
+```js
+const { util, generateText } = require("./../util"); // Syntax natively supported by jest
+
+// Function available globally when we run our tests with jest
+test("Expected output name and age", () => {
+    const inputText = generateText("Susana", 26);
+    expect(inputText).toBe("Susana (26 years old)"); // Jest available functions
+});
+```
+
+- To run the test we have to modify the test scripts section in our ```package.json``` file so the jest tests are executed. Our scripts section should look like:
+
+```json
+
+  "scripts": {
+    "start": "webpack app.js --mode development --watch",
+    "test": "jest"
+  },
+
+```
+
+Then we can simply run the test using the command below:
+
+```sh
+
+npm test
+
+```
+
+- Another way to run just is as shown below, so jest will keep on watching and re-run itself each time we make any code change:
+
+```json
+
+  "scripts": {
+    "start": "webpack app.js --mode development --watch",
+    "test": "jest --watch"
+  },
+
+```
+
+## End-to-end tests or user interface tests (e2e)
+
+First we have to run the commands below, in the "testing-practice" folder
+puppeteer is a headless version of the Chrome browser:
+
+```sh
+npm start // If webpack is not running already
+npm install --save-dev puppeteer
+```
+
+- In the test below we are using ```sloMo``` to slow down the automated operations so  we can see what's happening, we can also set some ```args```, which is an array, where we can the set the window size to launch this browser with, that way we can test if certain responsive features are working:
+
+> Remember re-run webpack to re-compile code if any change was made ```npm start```
+
+```js
+
+test("e2e test, create alement success", async () => {
+const browser = await puppeteer.launch({
+    headless: "new"
+    // That configuration show us the data input steps
+
+    // headless: false,
+    // slowMo: 80,
+    // args: ["--window-size=1920,1080"]
+})
+
+const page = await browser.newPage();
+await page.goto(
+    'http://127.0.0.1:5500/projects/testing-practice/index.html'
+);
+await page.click('input#name');
+await page.type('input#name', 'Anna');
+await page.click('input#age');
+await page.type('input#age', '28');
+await page.click('#btnAddUser');
+const finalText = await page.$eval('.user-item', el => el.textContent);
+expect(finalText).toBe('Anna (28 years old)');
+browser.close();
+
+}, 10000);
+
+```
+
+## Testing Async Code
+
+- When testing a function with a HttpRequest we can found problems because your tests will also trigger that code which might send a HttpRequest too or which might do something which makes the test take longer, might hit a backend API or might towards results. So we have to really only test what matters in each case.
+
+
+```js
+  test('Print an uppercase text', () => {
+    loadTitle().then(title => { //Expect the whole promise as JS doesn't wait for the return statements
+      expect(title).toBe('DELECTUS AUT AUTEM');
+    });
+  });
+
+```
+
+- Now, in the example above, we are hitting APIs for real which is not a good practice for testing as we don't know what data we may being modifiying. And another reason is what we are triying to test, if the API is working properly should be made another test not when testing the front end or the behaviour or our application.
+
+So in order to fix that we mock features, which means we replace features we don't want a test with some dummy implementations.
+
+## Creating the mock features
+
+- We have to create a **__mocks__** file. That file has to have the same folders-files organization as the file that contains the feature we are trying to mock.
+
+In our case, as the file is in the root of our project, would be:
+
+__mocks__ // Folder
+  http.js // File where is the feature we are going to mock
+
+- Now we can set up some mocked function that will replace the real ones, like the one below:
+
+```js
+  const fetchData = () => {
+    return Promise.resolve({ title: 'delectus aut autem' });
+  };
+
+  exports.fetchData = fetchData;
+
+```
+
+and adding the line ```jest.mock('./http');``` to the beggining of our ```util.test.js``` we get all the functions that are export in ```__mocks__ >  http.js``` are then replacing the **real** functions for our tests only.
+
+- We can mock global packages like axios for example, we have to create a axios.js file and add the function we need to mock. the get function in our case:
+
+```js
+  const get = url => {
+    return Promise.resolve({ data: { title: 'delectus aut autem' } });
+  };
+
+  exports.get = get;
+
+```
+
+- **In case of global packages jast will use the mocks automatically so we don't have to specify it like ```jest.mock('./axios');```**
+
+> More info aboutjs testing can be found here https://www.harrymt.com/blog/2018/04/11/stubs-spies-and-mocks-in-js.html
